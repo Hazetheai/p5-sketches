@@ -1,14 +1,4 @@
-var pos,
-  target,
-  restX,
-  restY,
-  vel,
-  r,
-  drag,
-  strength,
-  currentX,
-  currentY,
-  ballWidth;
+var restX, restY, vel, drag, strength, currentX, currentY, ballWidth;
 
 let dragging,
   hover = false;
@@ -18,12 +8,9 @@ let offsetX, offsetY;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   //   frameRate(5);
-  r = 60; //radius
-  pos = 100; //where it initially goes to (Ball)
-  target = 100; // where it wants to go (Mouse)
   vel = 0; // velocity
-  restX = 200;
-  restY = 200;
+  restX = 20;
+  restY = 150;
 
   currentX = restX;
   currentY = restY;
@@ -35,17 +22,18 @@ function draw() {
   //draw is called every frame
   background(255);
   target = 100;
-  line(100, 100, currentX + ballWidth / 2, currentY + ballWidth / 2);
+  line(
+    20 + ballWidth / 2,
+    100,
+    currentX + ballWidth / 2,
+    currentY + ballWidth / 2
+  );
 
-  //   console.log(offsetX, offsetY, "Offset");
-  //   console.log(currentX, currentY, "Current");
-  //   console.log(mouseX, mouseY, "mouse");
+  strokeWeight(3);
 
   //draw our circle
   fill(214, 71, 150);
-  //currently stays put
   ellipse(currentX, currentY, ballWidth);
-  //   ellipse(currentX, currentY, ballWidth);
   ellipseMode(CORNER);
   var force = restY - (currentX + currentY) / 2; //how far "stretched"
   force *= strength; // the "strength" of our "spring"
@@ -68,8 +56,6 @@ function draw() {
     currentX = mouseX + offsetX;
     currentY = mouseY + offsetY;
   }
-  //This ball follows
-  //   ellipse(currentX, mouseY, ballWidth);
 }
 
 function setValues() {
